@@ -1,0 +1,66 @@
+.form-signin {
+  width: 320px;
+  height: 300px;
+  padding: 0;
+  top: 4em;
+  left: 50%;
+  position: absolute;
+  margin: 0 0 0 -160px; }
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+    font-weight: normal; }
+  .form-signin .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px; }
+  .form-signin .form-control:focus {
+    z-index: 2; }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+
+body {
+  background: url("/images/flower.jpg") no-repeat left top;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.jumbotron {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 6em; }
+
+.form-signin {
+  margin-top: 10%; }
+
+form.surveys {
+  width: 100%;
+  margin: 0 0 1em 0;
+  padding: 1em;
+  background: #acddf2; }
+  form.surveys .main input[type='text'] {
+    font-size: 1.4em;
+    border: 1px solid #2c9cd2;
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+    width: 100%;
+    box-sizing: border-box; }
+  form.surveys .actions button {
+    margin-top: 1em; }
+
+#main ul.tasks {
+  display: block; }
+
+#main .no-task {
+  display: none; }
+
+#main.no-task ul.tasks {
+  display: none; }
+
+#main.no-task .no-task {
+  display: block; }

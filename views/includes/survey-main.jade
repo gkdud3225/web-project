@@ -1,0 +1,15 @@
+form#form-task.form-inline(class='surveys')
+  .form
+    .main
+      input(type='text', id='content', name='content', placeholder='설문 제목')
+      input(type='text', id='content', name='content', placeholder='설문내용을 입력하세요')
+      input(type='text', id='content', name='content', placeholder='질문을 입력하세요')
+    .sub
+      .form-group
+        select.form-control(name='category')
+          option(value='객관식', selected) 객관식
+          option(value='텍스트') 텍스트
+          option(value='단락 텍스트') 단락텍스트
+          option(value='기타') 기타
+  .actions
+      button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
