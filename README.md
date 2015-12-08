@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # App4: Ajax와 REST API
 
 
@@ -14,3 +15,6 @@
 - 사용자가 done을 누르면 변경하고 내용을 PUT으로 전송하고 다시 rendering
 - 사용자가 delete버튼을 누르면 내용을 DELETE로 해당 Dom node 삭제
 - side bar의 선택이 바뀌면 다시 rendering
+=======
+# web-project
+>>>>>>> 5b284c1f483f655f0d27a3234d310d9f2e6bc16a
