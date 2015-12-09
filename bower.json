@@ -1,9 +1,9 @@
 {
-  "name": "ex01",
+  "name": "web-project-survey",
   "version": "0.0.0",
-  "homepage": "https://github.com/dongseop/mju-class-wp",
+  "homepage": "https://github.com/gkdud3225/web-project",
   "authors": [
-    "Dongseop Kwon <dongseop@gmail.com>"
+    "Hayoung Kim <adi0825@naver.com>"
   ],
   "license": "MIT",
   "ignore": [

@@ -1,15 +1,23 @@
 form#form-task.form-inline(class='surveys')
   .form
     .main
-      input(type='text', id='content', name='content', placeholder='설문 제목')
-      input(type='text', id='content', name='content', placeholder='설문내용을 입력하세요')
-      input(type='text', id='content', name='content', placeholder='질문을 입력하세요')
+      #mainform
+        input(type='text', class='input_text', id='content', name='content', placeholder='설문 제목')
+        textarea.form-control(rows='3', class='input_text', placeholder='설문 설명')
+        hr
     .sub
-      .form-group
-        select.form-control(name='category')
-          option(value='객관식', selected) 객관식
-          option(value='텍스트') 텍스트
-          option(value='단락 텍스트') 단락텍스트
-          option(value='기타') 기타
+      .input-group
+        .input-group-btn
+          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
+            | 질문유형
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a#button_multiple(href='#') 객관식
+            li
+              a#button_text(href='#') 텍스트
+            li
+              a#button_longtext(href='#') 단락 텍스트
+
   .actions
       button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
