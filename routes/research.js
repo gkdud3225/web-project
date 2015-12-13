@@ -23,6 +23,7 @@ router.get('/test/:id', function(req, res, next) {
 //   toObject: {virtuals: true}
 // });
 router.post('/new', function(req, res, next) {
+  console.log(req.body);
   Survey.findById(req.body.survey_id,function(err,survey){
     var answers = [];
     for(var i in survey.questions){
@@ -36,10 +37,6 @@ router.post('/new', function(req, res, next) {
         }
       }
     }
-    // var answer = {
-    //   survey:req.body.survey_id,
-    //   answer:answers
-    // };
     var answer = new Answer ({
       survey:req.body.survey_id,
       answer:answers

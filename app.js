@@ -15,6 +15,7 @@ var routes = require('./routes/index'),
     users = require('./routes/users'),
     surveys = require('./routes/surveys'),
     research = require('./routes/research'),
+    result = require('./routes/result'),
     lists = require('./routes/lists');
 
 var routeAuth = require('./routes/auth');
@@ -66,6 +67,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/surveys', surveys);
 app.use('/research', research);
+app.use('/result', result);
 app.use('/lists', lists);
 routeAuth(app, passport);
 

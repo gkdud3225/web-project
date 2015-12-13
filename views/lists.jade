@@ -14,14 +14,16 @@ block content
           each survey in surveys
             tr
               td
-                a(href='/lists/#{survey.id}')= survey.title
+                a(href='/lists/#{survey.id}/edit')= survey.title
               td= moment(survey.createdAt).format('YYYY/MM/DD')
               td
-                a(href='localhost:3000/research/'+survey._id)= 'localhost:3000/research/'+survey._id
+                a(href='https://fierce-stream-7487.herokuapp.com/research/'+survey._id)= 'https://fierce-stream-7487.herokuapp.com/research/'+survey._id
               td
                 a.btn.btn-xs.btn-default(href='/lists/#{survey.id}/edit') 수정
                 | 
                 a.btn.btn-xs.btn-default(href='/lists/#{survey.id}?_method=DELETE') 삭제
+                | 
+                a.btn.btn-xs.btn-default(href='/result/#{survey.id}') 결과
           
       form#deleteForm(style='display:none', method="POST")
             

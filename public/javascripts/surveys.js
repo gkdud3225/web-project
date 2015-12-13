@@ -66,8 +66,8 @@ var TaskController = function() {
   };
 
   Constructor.prototype.clearForm = function() {
-    // $("#question_title").val("");
-    // $("#form-survey select[name='category']").val("text");
+    $("#question_title").val("");
+    $("#form-survey select[name='category']").val("text");
   };
 
   Constructor.prototype._findQuestion = function(e) {

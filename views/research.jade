@@ -1,5 +1,4 @@
 extends layout
-
 block content
   if survey
     h1.page-header 설문 답변
@@ -16,18 +15,26 @@ block content
             hr
             each question in survey.questions
               if(question.q_type == '텍스트')
-                label(for='text', id=question.id, name=question.id)=question.title
+                label()=question.title
                 input(type='hidden', id='answer_id', name='answer_id', value=question.id)
                 input(type='text', class='input_text sub', id='answer', name='answer', placeholder='질문 답변')
-                br
+                hr
               else if(question.q_type == '단락텍스트')
-                label(for='texarea', id=question.id, name=question.id)=question.title
+                label()=question.title
                 input(type='hidden', id='answer_id', name='answer_id', value=question.id)
                 textarea.form-control(rows='3', class='input_text sub', id='answer', name='answer', placeholder='질문 답변')
-                br
+                hr
               else if(question.q_type == '객관식')
-                label(for='name', id=question.id, name=question.id)=question.title
+                label()=question.title
+                input(type='hidden', id='answer_id', name='answer_id', value=question.id)
+                input(type='hidden', id='#{question.id}', name='answer')
                 br
+                each answer in question.answers
+                  if answer.answer != ''
+                    input(type='radio', id=answer.id, name=question.id, value=answer.answer, onClick="check('#{question.id}','#{answer.answer}');")
+                    label(for=answer.id, onclick="check('#{question.id}','#{answer.answer}');")=answer.answer
+                    
+                hr
             button.btn.btn-primary.btn-lg.btn-block(type='submit') 답변 완료
   else
     .jumbotron

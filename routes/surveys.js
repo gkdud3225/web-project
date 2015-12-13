@@ -64,15 +64,27 @@ router.post('/success', function(req, res, next) {
 });
 
 router.post('/new', needAuth, function(req, res, next) {
-  Survey.update({title:req.body.title}, {
-    $push: { "questions": {title:req.body.question_title, q_type:req.body.category} }
-  }, function(err,doc){
-    Survey.findOne({title:req.body.title},function(err,survey){
-      console.log('new_survey');
-      console.log(survey);
-      res.send(survey);
+  if(req.body.category !== '객관식'){
+    Survey.update({title:req.body.title}, {
+      $push: { "questions": {title:req.body.question_title, q_type:req.body.category} }
+    }, function(err,doc){
+      Survey.findOne({title:req.body.title},function(err,survey){
+        console.log('new_survey');
+        console.log(survey);
+        res.send(survey);
+      });
     });
-  });
+  }else{
+    Survey.update({title:req.body.title}, {
+      $push: { "questions": {title:req.body.question_title, q_type:req.body.category,answers:[{answer:req.body.answer1},{answer:req.body.answer2},{answer:req.body.answer3},{answer:req.body.answer4},{answer:req.body.answer5}]} }
+    }, function(err,doc){
+      Survey.findOne({title:req.body.title},function(err,survey){
+        console.log('new_survey');
+        console.log(survey);
+        res.send(survey);
+      });
+    });
+  }
 });
 
 // router.get('/test', function(req,res,next){

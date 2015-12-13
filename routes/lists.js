@@ -1,5 +1,6 @@
 var express = require('express'),
-    Survey = require('../models/Survey');
+    Survey = require('../models/Survey'),
+    Answer = require('../models/Answer');
 var router = express.Router();
 
 function needAuth(req, res, next) {
@@ -11,12 +12,21 @@ function needAuth(req, res, next) {
   }
 }
 
+function answerCount(survey_id){
+  // console.log(survey_id);
+  Answer.count({survey:survey_id},function(err,cnt){
+    console.log(cnt);
+    return cnt;
+  });
+  // return Answer.where({survey:survey_id}).count();
+}
+
 router.get('/', needAuth, function(req, res, next) {
   Survey.find({user:req.user.id}, function(err, docs) {
     if (err) {
       return next(err);
     }
-    res.render('lists', {surveys: docs});
+    res.render('lists', {surveys:docs});
   });
 });
 

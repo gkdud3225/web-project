@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  form#form-survey.form-inline(class='surveys')
+    .form
+      .main
+        #mainform
+          h3 설문제목
+          input(type='text', class='input_text', id='title', name='title', value=s_title, readonly='readonly')
+          p #{count}명 응답했습니다.
+          hr
+          each title, index in titles
+            label(class = "survey title")= title
+            br
+            each answer, i in answers
+              if i == index
+                each a in answer
+                  label(class = "survey content")= a
+                  br
+            hr
