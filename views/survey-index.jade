@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  #main.container.loading
+    .row
+      .col-sm-9
+        include ./includes/survey-form
+      .col-sm-3
+    .spinner
+      .background
+      .foreground
+        p
+          i.fa.fa-circle-o-notch.fa-spin.fa-4x
+        p Loading...
+  script(type='text/javascript', src='/javascripts/surveys.js')

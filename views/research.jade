@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  if survey
+    h1.page-header 설문 답변
+    form#form-survey.form-inline(class='surveys', action='/research/new', method='post')
+      .form
+        .main
+          #mainform
+            input(type='hidden', id='survey_id', name='survey_id', value=survey._id)
+            label(class='survey title')=survey.title
+            br
+            label(class='survey content')=survey.content
+            input(type='hidden', id='title', name='title', value=survey.title)
+            input(type='hidden', id='content', name='content', value=survey.content)
+            hr
+            each question in survey.questions
+              if(question.q_type == '텍스트')
+                label(for='text', id=question.id, name=question.id)=question.title
+                input(type='hidden', id='answer_id', name='answer_id', value=question.id)
+                input(type='text', class='input_text sub', id='answer', name='answer', placeholder='질문 답변')
+                br
+              else if(question.q_type == '단락텍스트')
+                label(for='texarea', id=question.id, name=question.id)=question.title
+                input(type='hidden', id='answer_id', name='answer_id', value=question.id)
+                textarea.form-control(rows='3', class='input_text sub', id='answer', name='answer', placeholder='질문 답변')
+                br
+              else if(question.q_type == '객관식')
+                label(for='name', id=question.id, name=question.id)=question.title
+                br
+            button.btn.btn-primary.btn-lg.btn-block(type='submit') 답변 완료
+  else
+    .jumbotron
+      p 없는 설문 입니다. 주소를 확인해 주세요.
+          

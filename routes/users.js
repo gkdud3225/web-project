@@ -54,7 +54,7 @@ router.get('/new', function(req, res, next) {
   res.render('users/new', {messages: req.flash()});
 });
 
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', needAuth, function(req, res, next) {
   User.findById(req.params.id, function(err, user) {
     if (err) {
       return next(err);
@@ -63,7 +63,7 @@ router.get('/:id/edit', function(req, res, next) {
   });
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', needAuth, function(req, res, next) {
   var err = validateForm(req.body);
   if (err) {
     req.flash('danger', err);
@@ -74,12 +74,13 @@ router.put('/:id', function(req, res, next) {
     if (err) {
       return next(err);
     }
+    console.log(user);
     if (!user) {
       req.flash('danger', '존재하지 않는 사용자입니다.');
       return res.redirect('back');
     }
 
-    if (user.password !== req.body.current_password) {
+    if (!user.validatePassword(req.body.current_password)) {
       req.flash('danger', '현재 비밀번호가 일치하지 않습니다.');
       return res.redirect('back');
     }
@@ -95,12 +96,12 @@ router.put('/:id', function(req, res, next) {
         return next(err);
       }
       req.flash('success', '사용자 정보가 변경되었습니다.');
-      res.redirect('/users');
+      res.redirect('/users/'+req.params.id);
     });
   });
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', needAuth, function(req, res, next) {
   User.findOneAndRemove({_id: req.params.id}, function(err) {
     if (err) {
       return next(err);

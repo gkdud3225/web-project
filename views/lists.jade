@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1 설문목록
+  
+  div.table-responsive
+    table.table.table-striped
+      thead
+          tr
+            th 설문제목
+            th 작성일
+            th 설문 URL
+        tbody
+          each survey in surveys
+            tr
+              td
+                a(href='/lists/#{survey.id}')= survey.title
+              td= moment(survey.createdAt).format('YYYY/MM/DD')
+              td
+                a(href='localhost:3000/research/'+survey._id)= 'localhost:3000/research/'+survey._id
+              td
+                a.btn.btn-xs.btn-default(href='/lists/#{survey.id}/edit') 수정
+                | 
+                a.btn.btn-xs.btn-default(href='/lists/#{survey.id}?_method=DELETE') 삭제
+          
+      form#deleteForm(style='display:none', method="POST")
+            
+      script(type='text/javascript').
+        $(".delete").click(function(e) {
+          var id = $(e.currentTarget).data('id');
+          if (confirm('정말 삭제하시겠습니까?')) {
+            $("#deleteForm").attr('action', "/lists/" + id + "?_method=DELETE").submit();          
+          }
+          return false;
+        });

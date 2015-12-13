@@ -1,10 +1,10 @@
-form.surveys {
+form.todos {
   width: 100%;
   margin: 0 0 1em 0;
   padding: 1em;
   background: #acddf2;
   .main {
-    input[type='text'], textarea {
+    input[type='text'] {
       font-size: 1.4em;
       border: 1px solid #2c9cd2;
       padding: 0.5em 1em;
@@ -18,12 +18,12 @@ form.surveys {
   }
 }
 
-.surveys {
+.tasks {
   width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
-  li.survey {
+  li.task {
     border-bottom: 1px solid #eaeaea;
     padding: 1em 0;
     span {
@@ -77,6 +77,7 @@ form.surveys {
       }
     }
 
+
     &.done {
       background-color: #eee;
       .check {
@@ -90,20 +91,60 @@ form.surveys {
   }
 
 }
+.side {
+  section {
+    background: #888;
+    width: 100%;
+    color: #fff;
+    a {
+      color: #fff;
+      display: inline-block;
+      text-decoration: none;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.5em 1em 0.5em 3em;
+      border-bottom: 1px solid #fff;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &.all {
+        background: #444;
+      }
+    }
+
+    a.selected {
+      padding-left: 1em;
+      background-color: #009eec;
+      &:before {
+        font-family: FontAwesome;
+        content: "\f00c";
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 1em;
+      }
+    }
+
+    a:hover, a.selected:hover {
+      background-color: #337AB7;
+    }
+  }
+}
 
 #main {
-  ul.surveys {
+  ul.tasks {
     display: block;
   }
-  .no-survey {
+  .no-task {
     display: none;
   }
 
-  &.no-survey {
-    ul.surveys {
+  &.no-task {
+    ul.tasks {
       display: none;
     }
-    .no-survey {
+    .no-task {
       display: block;
     }
   }

@@ -1,0 +1,40 @@
+form#form-survey.form-inline(class='surveys', action='/surveys/success', method='post')
+  .form
+    .main
+      #mainform
+        input(type='hidden', id='survey_id', name='survey_id', value=survey._id)
+        input(type='text', class='input_text', id='title', name='title', value=survey.title, readonly='readonly')
+        textarea.form-control(rows='5', class='input_text', id='content', name='content', readonly='readonly')=survey.content
+        hr
+        input(type='text', class='input_text', id='question_title', name='question_title', placeholder='질문 제목')
+    .sub
+      .form-group
+        select.form-control(name='category', id='category')
+          option(value='텍스트', selected) 텍스트
+          option(value='단락텍스트') 단락 텍스트
+          option(value='객관식') 객관식
+  .actions
+      button#post-survey.btn.btn-primary.btn-lg.btn-block(type='button') 질문등록
+        
+  div.form-actions
+    button.btn.btn-primary(type='submit') 완료
+      
+ul.surveys
+
+.no-survey 
+  .alert.alert-info 질문이 없습니다.
+script#survey-template(type='text/template').
+  <li data-id='<%= _id %>'>
+    <span class='content'><%= title %></span>
+    <% if (q_type) { %>
+      <span class='label label-default category'>
+        <%= q_type %>
+      </span>
+    <% } %>
+    <a href='#' class='remove'><i class='fa fa-trash-o'></i></a>
+  </li>
+
+script.
+  $(function() {
+    var survey = new TaskController();    
+  });

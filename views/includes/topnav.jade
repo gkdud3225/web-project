@@ -5,16 +5,21 @@
         a(href='/')
           span.glyphicon.glyphicon-home(aria-hidden='true')
       li(role='presentation')
-        a(href='/surveys') 설문만들기
+        a(href='/surveys') 설문지
+      li(role='presentation')
+        a(href='/lists') 설문목록
   .col-md-4
     ul.nav.nav-pills
-        if (currentUser) 
+      if (currentUser)
+        if(currentUser.owner)
           li
-            a(href='/users/#{currentUser._id}') Profile
-          li
-            a(href='/signout') Signout
-        else
-          li
-            a(href='/signin') Signin
-          li
-            a(href='/users/new') Signup
+            a(href='/users') Users 
+        li
+          a(href='/users/#{currentUser._id}') Profile
+        li
+          a(href='/signout') Signout
+      else
+        li
+          a(href='/signin') Signin
+        li
+          a(href='/users/new') Signup

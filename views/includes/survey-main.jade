@@ -1,23 +1,15 @@
-form#form-task.form-inline(class='surveys')
-  .form
-    .main
-      #mainform
-        input(type='text', class='input_text', id='content', name='content', placeholder='설문 제목')
-        textarea.form-control(rows='3', class='input_text', placeholder='설문 설명')
-        hr
-    .sub
-      .input-group
-        .input-group-btn
-          button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
-            | 질문유형
-            span.caret
-          ul.dropdown-menu(role='menu')
-            li
-              a#button_multiple(href='#') 객관식
-            li
-              a#button_text(href='#') 텍스트
-            li
-              a#button_longtext(href='#') 단락 텍스트
+.container
+  if survey.id
+    h1.page-header 설문수정
+  else
+    h1.page-header 설문작성
 
-  .actions
-      button#post-task.btn.btn-primary.btn-lg.btn-block(type='button') 저장
+  form#form-task.form-inline(class='surveys', action = (survey.id) ? "/surveys/#{survey.id}?_method=PUT" : "/surveys", method='POST')
+    .form
+      .main
+        #mainform
+          input(type='text', class='input_text', id='title', name='title', placeholder='설문 제목', value=survey.title)
+          textarea.form-control(rows='5', class='input_text', id='content', name='content', placeholder='설문 설명')=value=survey.content
+          hr
+    .actions
+        button#post-task.btn.btn-primary.btn-lg.btn-block(type='submit') 저장
