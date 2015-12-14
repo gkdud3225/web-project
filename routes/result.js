@@ -3,25 +3,6 @@ var express = require('express'),
     Answer = require('../models/Answer');
 var router = express.Router();
 
-// var schema = new Schema({
-//   survey: {type: Schema.Types.ObjectId, index: true, required: true},
-//   answer: [{q_id:{type: Schema.Types.ObjectId, index: true, required: true},answer: String, q_title: String}]
-// }, {
-//   toJSON: {virtuals: true},
-//   toObject: {virtuals: true}
-// });
-
-// var schema = new Schema({
-//   title: {type: String, required: true},
-//   content: {type: String, required: true},
-//   questions: [{title: String, answers: [{answer: String}], q_type: String}],
-//   user: {type: Schema.Types.ObjectId, index: true, required: true},
-//   createdAt: {type: Date, default: Date.now}
-// }, {
-//   toJSON: {virtuals: true},
-//   toObject: {virtuals: true}
-// });
-
 router.get('/:id', function(req, res, next) {
   Survey.findById(req.params.id,function(err,survey){
     Answer.count({survey:req.params.id},function(err,cnt){
@@ -34,7 +15,6 @@ router.get('/:id', function(req, res, next) {
             }
           }
         }
-        console.log(q_titles);
         var q_answers = [];
         var count = 0;
         for(var k in q_titles){

@@ -59,7 +59,6 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/success', function(req, res, next) {
-  console.log(req.body.survey_id);
   res.render('survey-success',{survey_id:req.body.survey_id});
 });
 
@@ -69,8 +68,6 @@ router.post('/new', needAuth, function(req, res, next) {
       $push: { "questions": {title:req.body.question_title, q_type:req.body.category} }
     }, function(err,doc){
       Survey.findOne({title:req.body.title},function(err,survey){
-        console.log('new_survey');
-        console.log(survey);
         res.send(survey);
       });
     });
@@ -79,42 +76,15 @@ router.post('/new', needAuth, function(req, res, next) {
       $push: { "questions": {title:req.body.question_title, q_type:req.body.category,answers:[{answer:req.body.answer1},{answer:req.body.answer2},{answer:req.body.answer3},{answer:req.body.answer4},{answer:req.body.answer5}]} }
     }, function(err,doc){
       Survey.findOne({title:req.body.title},function(err,survey){
-        console.log('new_survey');
-        console.log(survey);
         res.send(survey);
       });
     });
   }
 });
 
-// router.get('/test', function(req,res,next){
-//   Survey.find({questions:{$elemMatch:{_id:'566cc59a0892c848065e79b7'}}}, function(err, survey){
-//     if(err){
-//       return res.status(500).json({message:'error', desc:err});
-//     }
-//     console.log(survey);
-//     // res.json(survey);
-//      Survey.update({questions: {$elemMatch: {_id:'566cc59a0892c848065e79b7'}}}, {$pull:{questions:{_id:'566cc59a0892c848065e79b7'}}}, function(err, survey) {
-//       if (err) {
-//         console.log('internal!!!!!!!!!!!!!!!!!!!!!!!!!!');
-//         console.log(err);
-//         return res.status(500).json({message: 'internal error', desc: err});
-//       }
-//       if (!survey) {
-//         console.log('task not found!!!!!!!!!!!!!!!!!!!!!!!!!!');
-//         return res.status(404).json({message: 'task not found'});
-//       }
-//       console.log('deeeeeeeeleeeeeeeeeeeeeteeeeeeeeeeeeeeeeeeeee');
-//       console.log(survey);
-//       res.json(survey);
-//     });
-//   });
-// });
-
 router.delete('/:id', needAuth, function(req, res, next) {
   Survey.update({questions: {$elemMatch: {_id:req.params.id}}}, {$pull:{questions:{_id:req.params.id}}}, function(err, survey) {
     if (err) {
-      console.log(err);
       return res.status(500).json({message: 'internal error', desc: err});
     }
     if (!survey) {

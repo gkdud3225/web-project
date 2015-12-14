@@ -9,12 +9,7 @@ var TaskController = function() {
       $("#main").removeClass("loading");
     });
   }
-/*
-  function checked(type, value) {
-    var e = $("." + type + " .option[data-value='" + value + "']");
-    return e.hasClass('selected');
-  }
-*/
+
   var Constructor = function () {
     var self = this;
     setAjaxHandler();
@@ -25,16 +20,7 @@ var TaskController = function() {
       self.postSurvey();
     }.bind(this));
   };
-/*
-  Constructor.prototype._visible = function(survey) {
-    if (_.includes(['텍스트', '단락텍스트', '객관식'], survey.quetions.q_type)) {
-      if (!checked('category', survey.quetions.q_type)) {
-        return false;
-      }
-    }
-    return true;
-  };
-*/
+
   Constructor.prototype.load = function() {
     var self = this;
     var params = {title:this.title};
@@ -75,34 +61,11 @@ var TaskController = function() {
     var id = el.data('id');
     return id;
   };
-/*
-  Constructor.prototype.postDone = function(e) {
-    var task = this._findTask(e);
-    if (!task) {
-      return;
-    }
-    var self = this;
-    $.ajax({
-      url: '/tasks/' + task.id,
-      method: 'PUT',
-      dataType: 'json',
-      data: {
-        done: task.done ? false : true
-      },
-      success: function(data) {
-        task.done = data.done;
-        self.render();
-      }
-    });
-  };
-*/
+
   Constructor.prototype.postSurvey = function() {
     var self = this;
     console.log('test');
     $.post("/surveys/new", $("#form-survey").serialize(), function(data) {
-      console.log('data_questions:');
-      console.log(data.questions);
-      console.log('question:');
       console.log(data.questions[self.questions.length]);
       self.questions.push(data.questions[self.questions.length]);
       self.render();
@@ -113,7 +76,6 @@ var TaskController = function() {
   Constructor.prototype.removeSurvey = function(e) {
     var question = this._findQuestion(e);
     if (!question) {
-    confirm("zzzzzzzzzzzz");
       return;
     }
     var self = this;

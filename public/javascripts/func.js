@@ -2,12 +2,17 @@
 function isMulti(){
   if($("#category").val() === "객관식"){
     $("#multi").css('display', 'inline-block');
+  }else{
+    $("#multi").css('display', 'none');
+    $("#answer1").css('display', 'none');
+    $("#answer2").css('display', 'none');
+    $("#answer3").css('display', 'none');
+    $("#answer4").css('display', 'none');
+    $("#answer5").css('display', 'none');
   }
 }
 
 function check(id,answer){
-  alert("#"+id);
-  alert(answer);
   $("#"+id).val(answer);
   $("#"+id).css('display', 'none');
   document.getElementById(id).value=answer;

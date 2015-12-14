@@ -13,12 +13,9 @@ function needAuth(req, res, next) {
 }
 
 function answerCount(survey_id){
-  // console.log(survey_id);
   Answer.count({survey:survey_id},function(err,cnt){
-    console.log(cnt);
     return cnt;
   });
-  // return Answer.where({survey:survey_id}).count();
 }
 
 router.get('/', needAuth, function(req, res, next) {
@@ -40,8 +37,6 @@ router.get('/:id/edit', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
-  console.log(req.params.id);
   Survey.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       return next(err);

@@ -15,15 +15,7 @@ router.get('/test/:id', function(req, res, next) {
   });
 });
 
-// var schema = new Schema({
-//   survey: {type: Schema.Types.ObjectId, index: true, required: true},
-//   answer: [{q_id:{type: Schema.Types.ObjectId, index: true, required: true},answer: String}]
-// }, {
-//   toJSON: {virtuals: true},
-//   toObject: {virtuals: true}
-// });
 router.post('/new', function(req, res, next) {
-  console.log(req.body);
   Survey.findById(req.body.survey_id,function(err,survey){
     var answers = [];
     for(var i in survey.questions){
